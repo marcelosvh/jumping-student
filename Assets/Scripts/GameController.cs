@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
     public RawImage background;
     public RawImage platform;
     public GameObject uiIdle;
+    public GameObject uiScore;
+    public Text pointsText;
 
     public GameState gameState = GameState.Idle;
 
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
     public float scaleInc = .25f;
 
     private AudioSource musicPlayer;
+    private int points = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +42,9 @@ public class GameController : MonoBehaviour
         if (gameState == GameState.Idle && userAction) {
             gameState = GameState.Playing;
             uiIdle.SetActive(false);
+            uiScore.SetActive(true);
             player.SendMessage("UpdateState", "PlayerRun");
+            player.SendMessage("DustPlay");
             enemyGenerator.SendMessage("StartGenerator");
             musicPlayer.Play();
             InvokeRepeating("GameTimeScale", scaleTime, scaleTime);
@@ -77,6 +82,11 @@ public class GameController : MonoBehaviour
         CancelInvoke("GameTimeScale");
         Time.timeScale = newTimeScale;
         Debug.Log("Ritmo reestablecido: " + Time.timeScale.ToString());
+    }
+
+    public void IncreasePoints() {
+        // points++;
+        pointsText.text = (++points).ToString(); // En una sola línea incrementa uno y lo muestra en el campo de puntos
     }
 
 }
