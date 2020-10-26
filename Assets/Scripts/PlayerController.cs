@@ -39,4 +39,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void GameReady(){
+        game.GetComponent<GameController>().gameState = GameState.Ready;
+    }
+
 }
