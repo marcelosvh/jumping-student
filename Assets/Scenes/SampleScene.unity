@@ -965,3 +965,4 @@ MonoBehaviour:
   platform: {fileID: 1418841969}
   uiIdle: {fileID: 1188872742}
   gameState: 0
+  player: {fileID: 640177837}
