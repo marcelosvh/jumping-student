@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 
     public GameObject player;
     public GameObject enemyGenerator;
+    public GameObject trashGenerator;
 
     public float scaleTime = 6f;
     public float scaleInc = .25f;
@@ -48,6 +49,8 @@ public class GameController : MonoBehaviour
             player.SendMessage("UpdateState", "PlayerRun");
             player.SendMessage("DustPlay");
             enemyGenerator.SendMessage("StartGenerator");
+            trashGenerator.SendMessage("StartGenerator");
+
             musicPlayer.Play();
             InvokeRepeating("GameTimeScale", scaleTime, scaleTime);
         }
